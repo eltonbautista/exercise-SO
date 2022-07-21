@@ -118,3 +118,5 @@ yarn start
 
 This will open your browser at http://localhost:3000, allowing you to test the
 React client.
+# exercise-SO
+My attempt at SO's exercise.
