@@ -10,12 +10,17 @@ const options = {
   url: 'https://api.github.com/users/silverorange/repos',
   headers: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    'User-Agent': 'node',
+    'User-Agent': 'request',
   },
 };
 
 repos.get('/', async (_: Request, res: Response) => {
   res.header('Cache-Control', 'no-store');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
 
   res.status(200);
 
@@ -26,7 +31,8 @@ repos.get('/', async (_: Request, res: Response) => {
     const allMyRepos = [...parsedBody, ...localRepos];
     // define variable with filtered repos as value
     const filteredRepos = createFalse(allMyRepos);
-    res.json(filteredRepos);
+    // res.json(filteredRepos);
+    res.send(filteredRepos);
   });
 });
 
